@@ -1,0 +1,25 @@
+name: onboarding-email
+description: Demo workflow that runs fully offline with the built-in mock provider.
+defaults:
+  base_url: mock://  # swap to http://localhost:11434/v1 and model: llama3.2 for Ollama
+  model: mock
+inputs:
+  product: PromptCI
+steps:
+  - id: draft
+    prompt: prompts/draft.md
+    checks:
+      - type: not_contains
+        value: ["TODO", "PLACEHOLDER", "lorem ipsum"]
+      - type: max_length
+        value: 2000
+  - id: review
+    prompt: prompts/review.md
+    inputs:
+      draft: ${{ steps.draft.output }}
+    checks:
+      - type: regex
+        pattern: "(?i)ready to send"
+      - type: llm_judge
+        rubric: Does the review confirm the email draft is ready to send?
+        threshold: 0.5

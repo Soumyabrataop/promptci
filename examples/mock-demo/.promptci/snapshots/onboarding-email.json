@@ -1,0 +1,14 @@
+{
+  "draft": {
+    "signature": "57f83c9c8fb29726459af65f94f10376426e3aa5d322e4cdb7e25ed93d5c4b24",
+    "model": "mock",
+    "output": "Hi there!",
+    "recorded_at": "2026-10-16T12:49:26+00:00"
+  },
+  "review": {
+    "signature": "bc555f24854bcc2ffc763515bf24fe71034556c55ebe793e7ed5fbee2f641709",
+    "model": "mock",
+    "output": "The draft is friendly and clear, with no placeholders. Ready to send.",
+    "recorded_at": "2026-10-16T12:49:26+00:00"
+  }
+}

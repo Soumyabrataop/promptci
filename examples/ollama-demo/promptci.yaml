@@ -1,0 +1,29 @@
+name: local-demo
+description: Runs on an open-weight model via Ollama on your laptop — no API keys, no cloud.
+defaults:
+  base_url: http://localhost:11434/v1  # Ollama's OpenAI-compatible endpoint
+  model: llama3.2
+steps:
+  - id: haiku
+    prompt: prompts/haiku.md
+    checks:
+      - type: json_schema
+        schema:
+          type: object
+          required: [title, poem]
+          properties:
+            title: { type: string }
+            poem: { type: string }
+      - type: min_length
+        value: 40
+      - type: max_length
+        value: 2000
+  - id: judge
+    prompt: prompts/judge.md
+    model: llama3.2
+    inputs:
+      poem_json: ${{ steps.haiku.output }}
+    checks:
+      - type: llm_judge
+        rubric: Does the verdict say the poem is coherent and about the sea?
+        threshold: 0.5
