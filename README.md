@@ -1,4 +1,6 @@
 # PromptCI
+> [!NOTE]  
+> This is one of the very first, iteration of PromptCI versioned 0.1.0. Upcoming versions with features will be available soon. 
 
 **CI for LLM workflows: YAML pipelines, prompt templates, and regression gates — running on open-weight models, on your laptop.**
 
